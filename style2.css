@@ -1,0 +1,679 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Arial', sans-serif;
+  background: #000;
+  color: #fff;
+}
+
+.hero {
+  text-align: center;
+  padding: 40px 20px;
+}
+
+h1 {
+  font-size: 48px;/* Тек мобильді құрылғылар үшін */
+@media (max-width: 640px) {
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  body {
+    font-family: 'Arial', sans-serif;
+    background: #000;
+    color: #fff;
+  }
+
+  .hero {
+    text-align: center;
+    padding: 40px 20px;
+  }
+
+  h1 {
+    font-size: 42px;
+    letter-spacing: 4px;
+    color: #015116;
+  }
+
+  .subtitle {
+    font-size: 18px;
+    margin: 10px 0 20px;
+    color: #000000;
+  }
+
+  .perfume-img {
+    width: 250px;
+    max-width: 90%;
+    margin: 20px 0;
+    border-radius: 10px;
+  }
+
+  .description {
+    font-size: 15px;
+    line-height: 1.5;
+    max-width: 500px;
+    margin: 20px auto;
+    color: #ddd;
+  }
+
+  .btn {
+    display: inline-block;
+    background: gold;
+    color: black;
+    padding: 12px 24px;
+    border-radius: 30px;
+    text-decoration: none;
+    margin-top: 20px;
+    font-weight: bold;
+    transition: 0.3s;
+  }
+
+  .btn:hover {
+    background: #fff;
+    color: #000;
+  }
+
+  .order {
+    padding: 40px 20px;
+    background: #111;
+    text-align: center;
+  }
+
+  .order h2 {
+    margin-bottom: 20px;
+    color: rgb(0, 0, 0);
+  }
+
+  form {
+    max-width: 400px;
+    margin: auto;
+  }
+
+  input, button {
+    width: 100%;
+    margin-bottom: 15px;
+    padding: 12px;
+    font-size: 16px;
+    border: none;
+    border-radius: 5px;
+  }
+
+  input {
+    background: #222;
+    color: white;
+    border: 1px solid #333;
+  }
+
+  button {
+    background: gold;
+    color: black;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s;
+  }
+
+  button:hover {
+    background: white;
+  }
+
+  footer {
+    text-align: center;
+    padding: 20px;
+    font-size: 14px;
+    background: #FFD700;
+    color: #777;
+  }
+}
+
+/* Үлкен экрандар үшін сайтты бұғаттаймыз */
+@media (min-width: 641px) {
+  body {
+    background: #000;
+    color: white;
+    font-family: sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    text-align: center;
+    padding: 20px;
+  }
+
+  body::before {
+    content: "Бұл сайт тек мобильді құрылғылар үшін жасалған!!!";
+    font-size: 18px;
+    max-width: 600px;
+  }
+
+  .hero, .order, footer {
+    display: none;
+  }
+}
+
+  letter-spacing: 5px;
+  color: gold;
+}
+
+.subtitle {
+  font-size: 18px;
+  margin: 10px 0 20px;
+  color: #000000;
+}
+
+.perfume-img {
+  width: 250px;
+  max-width: 90%;
+  margin: 20px 0;
+  border-radius: 10px;
+}
+
+.description {
+  font-size: 16px;
+  line-height: 1.5;
+  max-width: 500px;
+  margin: 20px auto;
+  color: #ddd;
+}
+
+.btn {
+  display: inline-block;
+  background: gold;
+  color: black;
+  padding: 12px 24px;
+  border-radius: 30px;
+  text-decoration: none;
+  margin-top: 20px;
+  font-weight: bold;
+  transition: 0.3s;
+}
+
+.btn:hover {
+  background: #fff;
+  color: #000;
+}
+
+.order {
+  padding: 40px 20px;
+  background: #111;
+  text-align: center;
+}
+
+.order h2 {
+  margin-bottom: 20px;
+  color: gold;
+}
+
+form {
+  max-width: 400px;
+  margin: auto;
+}
+
+input, button {
+  width: 100%;
+  margin-bottom: 15px;
+  padding: 12px;
+  font-size: 16px;
+  border: none;
+  border-radius: 5px;
+}
+
+input {
+  background: #222;
+  color: white;
+  border: 1px solid #333;
+}
+
+button {
+  background: gold;
+  color: black;
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+button:hover {
+  background: white;
+}
+
+footer {
+  text-align: center;
+  padding: 20px;
+  font-size: 14px;
+  background: #272727;
+  color: #ffffff;
+}
+
+.reviews {
+  background: #FAF8F5;
+  text-align: center;
+}
+
+.reviews h2 {
+  color: gold;
+  margin-bottom: 20px;
+}
+
+.review {
+  background: linear-gradient(50deg, #000000 0%, #444444 28%, #000000 59%, #444444 84%);
+  border: 1px solid #222;
+  padding: 20px;
+  margin-bottom: 15px;
+  border-radius: 8px;
+  color: #d2d2d2;
+  font-size: 15px;
+}
+
+.review p:first-child {
+  font-size: 18px;
+  margin-bottom: 8px;
+  color: gold;
+}
+
+.review span {
+  display: block;
+  margin-top: 10px;
+  font-size: 14px;
+  color: #ffffff;
+}
+
+.review-slider .review {
+  display: none;
+  animation: fadeIn 0.8s ease-in-out;
+}
+
+.review-slider .review.active {
+  display: block;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.add-review {
+  background: #3a3a3a;
+  padding: 40px 20px;
+  text-align: center;
+}
+
+.add-review h2 {
+  color: rgb(248, 248, 248);
+  margin-bottom: 20px;
+}
+
+.add-review form {
+  max-width: 400px;
+  margin: auto;
+}
+
+.add-review input, .add-review textarea {
+  width: 100%;
+  margin-bottom: 12px;
+  padding: 10px;
+  border-radius: 5px;
+  background: #ffffff;
+  border: 1px solid #ffffff;
+  color: rgb(0, 0, 0);
+}
+
+.add-review button {
+  background: #3a3a3a;
+  color: rgb(255, 255, 255);
+  padding: 12px;
+  font-weight: bold;
+  border-style: solid;
+  border-color: white;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.add-review button:hover {
+  background: rgb(187, 187, 187);
+  color: rgb(255, 255, 255);
+}
+
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: #FAF8F5;
+  color: white;
+}
+
+/* ===== HEADER ===== */
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 20px;
+  background: #ffffff;
+  position: relative;
+  z-index: 1001;
+}
+
+.logo {
+  color: gold;
+  font-size: 24px;
+  font-weight: bold;
+}
+
+/* ===== HAMBURGER ===== */
+.hamburger {
+  width: 30px;
+  height: 22px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  cursor: pointer;
+  z-index: 1002;
+  transition: all 0.3s ease;
+}
+
+.hamburger span {
+  height: 3px;
+  background: rgb(0, 0, 0);
+  width: 100%;
+  border-radius: 2px;
+  transition: all 0.3s ease;
+}
+
+/* ===== X ANIMATION ===== */
+.hamburger.active span:nth-child(1) {
+  transform: rotate(45deg) translateY(8px);
+}
+.hamburger.active span:nth-child(2) {
+  opacity: 0;
+}
+.hamburger.active span:nth-child(3) {
+  transform: rotate(-45deg) translateY(-8px);
+}
+
+/* ===== SIDE MENU ===== */
+.side-menu {
+  position: fixed;
+  top: 0;
+  left: -50%;
+  width: 50%;
+  height: 100%;
+  background: #ffffff;
+  padding-top: 60px;
+  transition: left 0.3s ease-in-out;
+  z-index: 1000;
+}
+
+.side-menu.active {
+  left: 0;
+}
+
+.side-menu ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  text-align: center;
+}
+
+.side-menu ul li {
+  margin: 25px 0;
+}
+
+.side-menu ul li a {
+  color: rgb(0, 0, 0);
+  text-decoration: none;
+  font-size: 18px;
+  transition: color 0.2s ease;
+}
+
+.side-menu ul li a:hover {
+  color: white;
+}
+
+.side-menu ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  text-align: center;
+}
+
+.side-menu ul li {
+  margin: 20px 0;
+}
+
+.side-menu ul li a {
+  display: inline-block;
+  padding: 12px 24px;
+  background: rgb(255, 255, 255); /* алтын түс фонның жеңіл нұсқасы */
+  color: rgb(0, 0, 0);
+  text-decoration: none;
+  font-size: 18px;
+  border: 1px solid rgb(0, 0, 0);
+  border-radius: 8px;
+  transition: all 0.3s ease;
+}
+
+.side-menu ul li a:hover {
+  background: rgb(255, 255, 255);
+  color: rgb(0, 0, 0);
+  transform: scale(1.05);
+  box-shadow: 0 0 10px rgb(48, 48, 48);
+}
+
+.social-icons {
+  margin-top: 40px;
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+}
+
+.icon {
+  width: 40px;
+  height: 40px;
+  background: rgb(255, 255, 255);
+  color: rgb(0, 0, 0);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-decoration: none;
+  border-radius: 50%;
+  font-weight: bold;
+  font-size: 16px;
+  border: 1px solid rgb(0, 0, 0);
+  transition: all 0.3s ease;
+}
+
+.icon:hover {
+  background: rgb(255, 255, 255);
+  color: black;
+  transform: scale(1.1);
+  box-shadow: 0 0 10px rgb(42, 42, 42);
+}
+
+.perfume-section {
+  padding: 20px;
+  text-align: center;
+}
+
+.perfume-image {
+  width: 80%;
+  max-width: 300px;
+  border-radius: 12px;
+  margin-bottom: 20px;
+  box-shadow: 0 0 15px rgba(255, 215, 0, 0.3);
+}
+
+.info-block {
+  margin: 20px 0;
+  margin-top: 0px;
+}
+
+.toggle-btn {
+  background: rgb(0, 0, 0);
+  color: rgb(0, 0, 0);
+  padding: 10px 20px;
+  border: none;
+  font-size: 16px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.toggle-btn:hover {
+  background: #969696;
+}
+
+.specs {
+  margin-top: 15px;
+  background: #dbdbdb;
+  padding: 15px;
+  border-radius: 10px;
+  text-align: left;
+  color: gold;
+  font-size: 15px;
+}
+
+.specs ul {
+  list-style: none;
+  padding-left: 0;
+}
+
+.specs li {
+  margin-bottom: 10px;
+}
+
+.specs p {
+  margin-bottom: 12px;
+  line-height: 1.6;
+}
+
+.hidden {
+  display: none;
+}
+
+.info-block {
+  margin: 24px 0;
+  padding: 0 8px;
+}
+
+.toggle-btn {
+  width: 100%;
+  max-width: 320px;
+  margin: 0 auto;
+  display: block;
+  background: rgb(7, 7, 7);
+  color: #ffffff;
+  padding: 10px 20px;
+  border: none;
+  font-size: 16px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.specs {
+  margin-top: 15px;
+  background: #f5f5f5;
+  padding: 15px 20px;
+  border-radius: 10px;
+  text-align: left;
+  color: rgb(0, 0, 0);
+  font-size: 15px;
+  line-height: 1.6;
+}
+
+.call-icon {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background: #015116;
+  color: black;
+  font-size: 26px;
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-decoration: none;
+  box-shadow: 0 0 10px #3f704c;
+  z-index: 1100;
+  transition: all 0.3s ease;
+}
+
+.call-icon:hover {
+  transform: scale(1.1);
+  box-shadow: 0 0 15px #2e8846;
+}
+
+.quick-stats {
+  display: flex;
+  justify-content: space-between;
+  background: #111;
+  border: 1px solid rgb(0, 0, 0);
+  border-radius: 12px;
+  padding: 12px;
+  margin: 20px 0;
+  color: rgb(0, 0, 0);
+  font-size: 14px;
+  gap: 8px;
+}
+
+.stat {
+  flex: 1;
+  text-align: center;
+  padding: 5px;
+}
+
+.stat-number {
+  display: block;
+  font-size: 20px;
+  font-weight: bold;
+  color: rgb(225, 192, 4);
+}
+
+.stat-label {
+  font-size: 13px;
+  opacity: 0.9;
+}
+
+.quick-stats {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #302e2e;
+  border: 2px solid rgb(0, 0, 0);
+  border-radius: 16px;
+  padding: 16px 12px;
+  margin: 24px 0;
+  color: rgb(255, 255, 255);
+  font-size: 14px;
+  gap: 10px;
+  box-shadow: 0 0 10px rgba(255, 215, 0, 0.15);
+}
+
+.stat {
+  flex: 1;
+  text-align: center;
+  padding: 10px;
+  background: #4c4c4c;
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  box-shadow: inset 0 0 8px rgba(255, 215, 0, 0.1);
+}
+
+.stat-number {
+  display: block;
+  font-size: 20px;
+  font-weight: bold;
+  color: rgb(255, 255, 255);
+  margin-bottom: 4px;
+}
+
+.stat-label {
+  font-size: 13px;
+  opacity: 0.85;
+}
+

@@ -1,0 +1,946 @@
+<!DOCTYPE html>
+<html lang="kk">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Парфюм дүкені — Босс нұсқасы</title>
+  <link href="https://unpkg.com/ionicons@4.5.10-0/dist/css/ionicons.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    :root {
+      --bg: #0f1115;
+      --card: #151923;
+      --muted: #8b93a7;
+      --text: #e8ecf3;
+      --accent: #5b8cff;
+      --accent-2: #35d0a3;
+      --danger: #ff6b6b;
+      --shadow: 0 10px 30px rgba(0, 0, 0, .35);
+      --radius: 14px;
+    }
+
+    * {
+      box-sizing: border-box
+    }
+
+    html,
+    body {
+      margin: 0;
+      padding: 0;
+      /* background: linear-gradient(180deg, #ffffff, #f0fffc 100%, #fdfdfd); */
+      background-color: white;
+      color: var(--text);
+      font-family: system-ui, -apple-system, Arial, Segoe UI, Roboto, sans-serif;
+    }
+
+    a {
+      color: inherit
+    }
+
+    /* Header */
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 30;
+      backdrop-filter: blur(10px);
+      background: rgba(15, 17, 21, .85);
+      border-bottom: 1px solid rgba(255, 255, 255, .06);
+    }
+
+    .wrap {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 14px 16px;
+      display: flex;
+      gap: 14px;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-weight: 700;
+      letter-spacing: .5px
+    }
+
+    .brand .dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--accent), var(--accent-2));
+      box-shadow: 0 0 12px var(--accent)
+    }
+
+    .filters {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-wrap: wrap
+    }
+
+    .tabs {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap
+    }
+
+    .tab {
+      color: white;
+      padding: 8px 12px;
+      border: 1px solid rgba(255, 255, 255, .1);
+      border-radius: 10px;
+      cursor: pointer;
+      background: #111521;
+      transition: .2s
+    }
+
+    .tab.active {
+      background: linear-gradient(135deg, rgba(91, 140, 255, .18), rgba(53, 208, 163, .18));
+      border-color: rgba(255, 255, 255, .2)
+    }
+
+    .sort {
+      display: flex;
+      align-items: center;
+      gap: 8px
+    }
+
+    select {
+      background: #111521;
+      border: 1px solid rgba(255, 255, 255, .12);
+      color: var(--text);
+      padding: 8px 12px;
+      border-radius: 10px
+    }
+
+    /* Grid */
+    .grid {
+      max-width: 1200px;
+      margin: 18px auto;
+      padding: 0 16px;
+      display: grid;
+      gap: 16px;
+      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr))
+    }
+
+    .card {
+      background: linear-gradient(180deg, #121727, #12161f);
+      border: 1px solid rgba(255, 255, 255, .08);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      transition: transform .15s ease, box-shadow .15s ease
+    }
+
+    .card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 16px 40px rgba(0, 0, 0, .45)
+    }
+
+    .thumb {
+      aspect-ratio: 1/1;
+      display: block;
+      background: #0a0d14;
+      position: relative;
+      overflow: hidden
+    }
+
+    .thumb img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transition: transform .3s
+    }
+
+    .card:hover .thumb img {
+      transform: scale(1.05)
+    }
+
+    .badge {
+      position: absolute;
+      top: 10px;
+      left: 10px;
+      padding: 6px 10px;
+      background: rgba(0, 0, 0, .45);
+      backdrop-filter: blur(6px);
+      border: 1px solid rgba(255, 255, 255, .12);
+      border-radius: 999px;
+      font-size: 12px
+    }
+
+    .body {
+      padding: 12px 12px 14px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .title {
+      font-weight: 700
+    }
+
+    .muted {
+      color: var(--muted);
+      font-size: 13px
+    }
+
+    .row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px
+    }
+
+    .price {
+      font-weight: 700
+    }
+
+    .btn {
+      cursor: pointer;
+      border: none;
+      border-radius: 12px;
+      padding: 10px 12px;
+      font-weight: 600;
+      background: linear-gradient(135deg, var(--accent), var(--accent-2));
+      color: #0b0f16;
+      transition: filter .2s
+    }
+
+    .btn:hover {
+      filter: brightness(1.05)
+    }
+
+    .btn.secondary {
+      background: #1a2030;
+      color: var(--text);
+      border: 1px solid rgba(255, 255, 255, .12)
+    }
+
+    /* Modal */
+    .modal-backdrop {
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, .6);
+      backdrop-filter: blur(6px);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      z-index: 50
+    }
+
+    .modal {
+      width: min(720px, 92vw);
+      background: #12161f;
+      border: 1px solid rgba(255, 255, 255, .12);
+      border-radius: 16px;
+      box-shadow: var(--shadow);
+      overflow: hidden
+    }
+
+    .modal .content {
+      display: grid;
+      grid-template-columns: 280px 1fr;
+      gap: 16px;
+      padding: 16px
+    }
+
+    .modal .left {
+      background: #0b0f16;
+      border: 1px solid rgba(255, 255, 255, .06);
+      border-radius: 12px;
+      overflow: hidden
+    }
+
+    .modal .left img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block
+    }
+
+    .modal h3 {
+      margin: 0 0 6px 0
+    }
+
+    .sizes {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      margin: 10px 0
+    }
+
+    .radio {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      padding: 10px 12px;
+      border: 1px solid rgba(255, 255, 255, .12);
+      border-radius: 10px;
+      background: #141a28
+    }
+
+    .radio input {
+      accent-color: var(--accent);
+      transform: scale(1.1)
+    }
+
+    .modal .actions {
+      display: flex;
+      gap: 10px;
+      margin-top: 12px
+    }
+
+    .close-x {
+      position: absolute;
+      right: 12px;
+      top: 10px;
+      background: transparent;
+      border: none;
+      color: var(--muted);
+      font-size: 22px;
+      cursor: pointer
+    }
+
+    @media (max-width:720px) {
+      .modal .content {
+        grid-template-columns: 1fr
+      }
+    }
+
+    /* Cart drawer */
+    .cart-btn {
+      position: fixed;
+      right: 16px;
+      bottom: 16px;
+      z-index: 40;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 12px 14px;
+      border-radius: 14px;
+      border: 1px solid rgba(255, 255, 255, .12);
+      background: linear-gradient(135deg, rgba(91, 140, 255, 0.715), rgba(53, 208, 164, 0.654));
+      cursor: pointer;
+      font-weight: 700;
+      color: white;
+    }
+
+    .cart-count {
+      background: var(--accent);
+      color: #0b0f16;
+      border-radius: 999px;
+      padding: 2px 8px;
+      font-size: 12px
+    }
+
+    .drawer {
+      position: fixed;
+      right: -420px;
+      top: 0;
+      height: 100%;
+      width: 360px;
+      max-width: 92vw;
+      background: #12161f;
+      border-left: 1px solid rgba(255, 255, 255, .12);
+      box-shadow: var(--shadow);
+      transition: right .25s;
+      z-index: 60;
+      display: flex;
+      flex-direction: column
+    }
+
+    .drawer.open {
+      right: 0
+    }
+
+    .drawer .head {
+      padding: 14px 14px 10px;
+      border-bottom: 1px solid rgba(255, 255, 255, .08);
+      display: flex;
+      justify-content: space-between;
+      align-items: center
+    }
+
+    .drawer .list {
+      padding: 10px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      overflow: auto
+    }
+
+    .cart-item {
+      display: grid;
+      grid-template-columns: 56px 1fr auto;
+      gap: 10px;
+      align-items: center;
+      background: #141a28;
+      border: 1px solid rgba(255, 255, 255, .08);
+      border-radius: 12px;
+      padding: 8px
+    }
+
+    .cart-item img {
+      width: 56px;
+      height: 56px;
+      object-fit: cover;
+      border-radius: 8px
+    }
+
+    .qty {
+      display: flex;
+      align-items: center;
+      gap: 8px
+    }
+
+    .icon-btn {
+      background: #1a2030;
+      border: 1px solid rgba(255, 255, 255, .12);
+      color: var(--text);
+      border-radius: 8px;
+      padding: 4px 8px;
+      cursor: pointer
+    }
+
+    .drawer .foot {
+      padding: 12px;
+      border-top: 1px solid rgba(255, 255, 255, .08);
+      display: flex;
+      flex-direction: column;
+      gap: 10px
+    }
+
+    .total {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-weight: 700
+    }
+
+    .danger {
+      background: linear-gradient(135deg, #ff7a7a, #ff5252);
+      color: #0b0f16
+    }
+
+    /* Tiny helper */
+    .sr {
+      position: absolute;
+      left: -9999px
+    }
+
+    .grid {
+      max-width: 1200px;
+      margin: 18px auto;
+      padding: 0 16px;
+      display: grid;
+      gap: 16px;
+    }
+
+
+    /* Телефон: 2 карточка */
+    @media (max-width: 600px) {
+      .grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    /* Планшет: 3 карточка */
+    @media (min-width: 601px) and (max-width: 1024px) {
+      .grid {
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
+
+    /* Компьютер: 4 карточка */
+    @media (min-width: 1025px) {
+      .grid {
+        grid-template-columns: repeat(4, 1fr);
+      }
+    }
+
+    
+  </style>
+</head>
+
+<body>
+  <!-- Topbar -->
+  <div class="topbar">
+    <div class="wrap">
+      <div class="brand"><span class="dot"></span> <span><a href="#">
+        <img src="images/logo2.jpg" alt="logo"
+              style="width: 70px; border-radius: 10px;">
+      </a></span></div>
+      <div class="filters">
+        <div class="tabs" id="tabs">
+          <button class="tab active" data-cat="all">Барлығы</button>
+          <button class="tab" data-cat="men">Ерлерге</button>
+          <button class="tab" data-cat="women">Әйелдерге</button>
+          <button class="tab" data-cat="unisex">Unisex</button>
+        </div>
+        <div class="sort">
+          <label for="sortSel" class="sr">Сортировка</label>
+          <select id="sortSel">
+            <option value="popular">Сұраныс (әдепкі)</option>
+            <option value="price-asc">Баға жоғарылау ↑</option>
+            <option value="price-desc">Баға төмендеу ↓</option>
+            <option value="name-asc">Атауы А–Я</option>
+          </select>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Grid -->
+  <div class="grid" id="grid"></div>
+
+  <!-- Cart floating button -->
+  <button class="cart-btn" id="openCart" style="margin-bottom: 60px;">
+    🛒 Себет <span class="cart-count" id="cartCount">0</span>
+  </button>
+
+  <!-- Drawer Cart -->
+  <aside class="drawer" id="drawer">
+    <div class="head">
+      <strong>Сіздің себетіңіз</strong>
+      <button class="icon-btn" id="closeCart">✕</button>
+    </div>
+    <div class="list" id="cartList"></div>
+    <div class="foot">
+      <div class="total">
+        <span>Жалпы:</span>
+        <span id="cartTotal">0 ₸</span>
+      </div>
+      <div style="display:flex;gap:8px">
+        <button class="btn danger" id="clearCart">Тазарту</button>
+        <button class="btn" id="checkout">Төлемге өту</button>
+      </div>
+      <small class="muted">Демо режим. Төлем интеграциясын кейін қосамыз!</small>
+    </div>
+  </aside>
+
+  <!-- Modal -->
+  <div class="modal-backdrop" id="modalWrap" role="dialog" aria-modal="true" aria-hidden="true" style="overflow-y: auto;">
+    <div class="modal">
+      <button class="close-x" id="modalClose">✕</button>
+      <div class="content">
+        <div class="left"><img id="mImg" alt=""></div>
+        <div class="right">
+          <h3 id="mTitle">Әтір атауы</h3>
+          <div class="muted" id="mCat"></div>
+          <p class="muted" id="mDesc" style="margin-top:6px"></p>
+
+          <div class="sizes" id="mSizes"></div>
+
+          <div class="row">
+            <div class="price" id="mPrice">—</div>
+            <div class="muted">ҚҚС құрамында</div>
+          </div>
+
+          <div class="actions">
+            <button class="btn" id="mAdd">Себетке қосу</button>
+            <button class="btn secondary" id="mBuy">Себетті ашу</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <a href="/" style="text-decoration: none;">
+    <div class="footer-tab" style="width: 100%; position: fixed; bottom: 0px; height: 70px; background-color: #000000e7; display: flex; justify-content: space-around; align-items: center;">
+      <div class="sect" style="display: flex; justify-content: center; align-items: center; flex-direction: column; margin-top: 10px;">
+        <ion-icon name="home" style="width: 30px; height: 30px; color: #ffffff; margin: 0px;"></ion-icon>
+        <p style="font-size: 0.7em; margin-top: 0px; margin-bottom: 10px;" class="lora">Главная</p>
+      </div>
+  </a>
+    <a href="catalog.html" style="text-decoration: none;">
+      <div class="sect" style="display: flex; justify-content: center; align-items: center; flex-direction: column; margin-top: 10px;">
+        <ion-icon name="today" style="width: 30px; height: 30px; color: rgba(91, 140, 255, 0.715); margin: 0px;"></ion-icon>
+        <p style="font-size: 0.7em; margin-top: 0px; margin-bottom: 10px; color: rgba(91, 140, 255, 0.715);" class="lora">Каталог</p>
+      </div>
+    </a>
+     <a href="#" style="text-decoration: none;">
+       <div class="sect" style="display: flex; justify-content: center; align-items: center; flex-direction: column; margin-top: 10px;" >
+        <ion-icon name="gift" style="width: 30px; height: 30px; color: #ffffff; margin: 0px;"></ion-icon>
+        <p style="font-size: 0.7em; margin-top: 0px; margin-bottom: 0px;" class="lora">Подарочный<br>сертификат</p>
+           </div>
+     </a>
+     <a href="tehpod.html" style="text-decoration: none;"><div class="sect" style="display: flex; justify-content: center; align-items: center; flex-direction: column; margin-top: 10px;">
+      <ion-icon name="help-circle" style="width: 30px; height: 30px; color: #ffffff; margin: 0px;"></ion-icon>
+      <p style="font-size: 0.7em; margin-top: 0px; margin-bottom: 10px;" class="lora">О нас</p>
+    </div></a>
+  </div>
+
+  <footer style="height: 100px;">
+
+  </footer>
+
+  <script>
+    /** ------------ Demo Data -------------- **/
+    const PRODUCTS = [
+      {
+        id: 'p7', name: 'Sheikh', category: 'unisex',
+        image: 'images/sheikhparfum.jpeg',
+        desc: 'Цитрус пен амброксанның сергіткі ноталары. Күнделікті қолдануға идеал.',
+        prices: { 30: 19000, 50: 32000, 100: 52000 }, popular: 100
+      },
+      {
+        id: 'p1', name: 'Dior Sauvage', category: 'men',
+        image: 'https://static.insales-cdn.com/r/5l_nwHeItvY/rs:fit:1000:0:1/plain/images/products/1/5780/282121876/sauvage.jpg@jpg',
+        desc: 'Негізгі ноталары: бергамот, бұрыш, лаванда, амброксан. Жаңа, сергіткіш әрі ер мінезді иіс.',
+        prices: { 30: 19000, 50: 32000, 100: 52000 }, popular: 96
+      },
+      {
+        id: 'p2', name: 'Nishane', category: 'unisex',
+        image: 'https://pbs.twimg.com/media/FAhzd2-XsA830-e?format=jpg&name=large',
+        desc: 'Цитрус, раушан және пачули үйлесімі — классика ешқашан қартаймайды, әрдайым мәңгі.',
+        prices: { 30: 19000, 50: 32000, 100: 52000 }, popular: 98
+      },
+      {
+        id: 'p3', name: 'Meteore Louis Vuitton', category: 'men',
+        image: 'https://visionaryfragrances.com/cdn/shop/products/Metore_530x@2x.jpg?v=1678126535',
+        desc: 'Цитрус пен дәмдеуіштің жарқылы, еркіндік пен сенімділіктің символы.',
+        prices: { 30: 19000, 50: 32000, 100: 52000 }, popular: 92
+      },
+      {
+        id: 'p4', name: 'Aqva Pour Homme Bvlgari', category: 'men',
+        image: 'https://cosmetic.cl/cdn/shop/products/Aqva-Marine-de-Bvlgari-para-hombre-flyer_1024x.jpg?v=1627497944',
+        desc: 'теңіздің сергек толқынындай, балғын цитрус пен минералды реңктерді үйлестірген нағыз еркіндік хош иісі. 🌊',
+        prices: { 30: 19000, 50: 32000, 100: 52000 }, popular: 88
+      },
+      {
+        id: 'p5', name: 'Megamare Orto Parisi', category: 'unisex',
+        image: 'https://www.luxeperfumery.com/cdn/shop/products/BBD8EC78-7A6B-4904-8F92-EB26536BE663.jpg?v=1677801729&width=1445',
+        desc: 'теңіз толқынындай еркіндік сыйлайтын, шексіз көкжиекті еске салатын ерекше аромат.',
+        prices: { 30: 19000, 50: 32000, 100: 52000 }, popular: 91
+      },
+      {
+        id: 'p6', name: 'Versace Pour Homme', category: 'men',
+        image: 'https://beautytribe.com/cdn/shop/files/versace-pour-homme-for-men-eau-de-toilette-100ml-115520-559296.jpg?v=1732794419&width=1500',
+        desc: 'сергек те тартымды цитрусты-ароматикалық хош иіс. 🌊🍋',
+        prices: { 30: 19000, 50: 32000, 100: 52000 }, popular: 85
+      },
+
+      {
+        id: 'p8', name: 'Invictus Aqua Rabanne', category: 'men',
+        image: 'https://cdn120.randewoo.ru/43bc7ae73e0c9d5bee0a5524225a1ff5.jpg?quality=85&width=0&height=0',
+        desc: 'Ашылуында балғын цитрустар мен теңіз аккордтары, жүрегінде фиалка жапырағы мен ағаш ноталары, ал соңында жылы әрі еркектік амбера мен мускус сезіледі.',
+        prices: { 30: 19000, 50: 32000, 100: 52000 }, popular: 86
+      },
+
+      {
+        id: 'p9', name: 'Yves Saint Laurent', category: 'men',
+        image: 'https://http2.mlstatic.com/D_NQ_NP_722433-MLA82563147361_022025-O.webp',
+        desc: 'Жұмбақ әрі тартымды, кардамон, лаванда, ветивер қосылған түнгі образға арналған. 🌙✨',
+        prices: { 30: 19000, 50: 32000, 100: 52000 }, popular: 85
+      },
+
+       {
+        id: 'p10', name: 'Limmensite Louis Vuitton', category: 'men',
+        image: 'https://www.myperfumeshop.co.nz/cdn/shop/files/ac827085d8f74d31c517a3113a83c20c_2048x2048_cbdd01f8-0f96-4c50-bad8-a8ca3d0c439d.png?v=1710050723&width=1440',
+        desc: 'Еркіндікке, жаңа көкжиектерге шақыратын сергек, ер мінезді хош иіс.',
+        prices: { 30: 19000, 50: 32000, 100: 52000 }, popular: 85
+      },
+
+       {
+        id: 'p11', name: 'Bvlgari Tygar', category: 'men',
+        image: 'https://lifestyleperfume.am/images/product/4905/1730377431-68178.jpg',
+        desc: 'Энергия мен сенімділіктің символы, цитрус пен ағаш ноталары үйлескен ерлерге арналған хош иіс.',
+        prices: { 30: 19000, 50: 32000, 100: 52000 }, popular: 85
+      },
+
+       {
+        id: 'p12', name: 'White Chocola Richard', category: 'unisex',
+        image: 'https://static.insales-cdn.com/images/products/1/172/614572204/new_image.jpeg',
+        desc: 'Нәзік ақ шоколад пен ванильдің тәтті үйлесімі, жылы әрі еліктірер хош иіс.',
+        prices: { 30: 19000, 50: 32000, 100: 52000 }, popular: 81
+      },
+
+       {
+        id: 'p13', name: 'Musk Kashmir Attar Collection', category: 'unisex',
+        image: 'https://ir.ozone.ru/s3/multimedia-7/c1000/6348386191.jpg',
+        desc: 'Жұмсақ әрі терең шығыс хош иісі. Оның негізінде нәзік мускус, кәріптас және ақ гүлдердің жылы үйлесімі жатыр.',
+        prices: { 30: 19000, 50: 32000, 100: 52000 }, popular: 90
+      },
+
+       {
+        id: 'p14', name: 'Si Passione Giorgio Armani', category: 'women',
+        image: 'https://lifestyleperfume.am/images/product/929/1602702346-o.88564.jpg',
+        desc: 'Тәкаппарлық пен нәзіктік үйлесімі, Giorgio Armani Si Passione – құштарлыққа толы хош иіс.',
+        prices: { 30: 19000, 50: 32000, 100: 52000 }, popular: 90
+      },
+
+       {
+        id: 'p15', name: 'My Way Giorgio Armani', category: 'women',
+        image: 'https://farmalife.vteximg.com.br/arquivos/ids/175731-1200-1200/3614272907676-1.jpg?v=637711109398870000',
+        desc: 'Цитрус, жасыл ноталар. Жеңіл, таза, гүлді-композиция.',
+        prices: { 30: 19000, 50: 32000, 100: 52000 }, popular: 90
+      },
+
+       {
+        id: 'p16', name: 'Jo Malone London', category: 'unisex',
+        image: 'https://www.jomalone.com/media/export/cms/smpp/fy25/colognes/100x2.jpg',
+        desc: 'Жемісті және гүлді ноталар. Жеңіл, таза, минималистік композиция.',
+        prices: { 30: 19000, 50: 32000, 100: 52000 }, popular: 90
+      },
+
+      {
+        id: 'p17', name: 'Love Dont Be Shy By Kilian', category: 'women',
+        image: 'https://aromacake.uz/d/s2320133-av-10-zoom.webp',
+        desc: 'Теңіз тұзы, шалфей. Жеңіл әрі таза композиция.',
+        prices: { 30: 19000, 50: 32000, 100: 52000 }, popular: 90
+      },
+
+      {
+        id: 'p18', name: 'Yves Saint Laurent', category: 'men',
+        image: 'https://www.orental.ru/upload/catalog/yves-saint-laurent/libre.jpg',
+        desc: 'Бал, ваниль, жасмин. Нәзік, тәтті, романтикалық композиция.',
+        prices: { 30: 19000, 50: 32000, 100: 52000 }, popular: 90
+      },
+
+      {
+        id: 'p19', name: 'D&G Anthology L Imperatrice 3', category: 'women',
+        image: 'https://parfumgallery.uz/_next/image?url=https%3A%2F%2Fspaces.parfumgallery.uz%2Fimages%2Fproducts%2F2024-07-10T07-46-35-471Z_p245901-av-05-zoom.webp&w=1080&q=100',
+        desc: 'Құлпынай, қызғалдақ, мускус. Жеңіл, сергек, жемісті-композиция.',
+        prices: { 30: 19000, 50: 32000, 100: 52000 }, popular: 90
+      },
+
+      {
+        id: 'p20', name: 'La Vie Est Belle Lancôme', category: 'women',
+        image: 'https://i.makeup.kz/b/bs/bske53dthisc.jpg',
+        desc: 'Пирожное, ирис, ваниль. Тәтті, нәзік, гүлді-композиция.',
+        prices: { 30: 19000, 50: 32000, 100: 52000 }, popular: 90
+      },
+
+      {
+        id: 'p21', name: 'Miss Dior EAU DE Parfum', category: 'women',
+        image: 'https://images.parfumerie.nl/media/catalog/product/cache/3ba2fa8a362b7aa39693460460febae2/3/3/3348901581370_4_2.jpg',
+        desc: 'Теңіз тұзы, шалфей. Жеңіл әрі таза композиция.',
+        prices: { 30: 19000, 50: 32000, 100: 52000 }, popular: 90
+      },
+    ];
+
+    /** ------------ State -------------- **/
+    let currentCat = 'all';
+    let currentSort = 'popular';
+    let cart = loadCart();
+    let modalState = { product: null, size: null };
+
+    /** ------------ Utils -------------- **/
+    const fmt = n => n.toLocaleString('ru-RU') + ' ₸';
+    const basePrice = p => (p.prices[50] ?? Object.values(p.prices)[0]); // сортировка үшін
+    function saveCart() { localStorage.setItem('cart-v1', JSON.stringify(cart)); }
+    function loadCart() { try { return JSON.parse(localStorage.getItem('cart-v1') || '{}'); } catch { return {}; } }
+    function keyOf(id, size) { return `${id}_${size}`; }
+
+    /** ------------ Render Grid -------------- **/
+    const grid = document.getElementById('grid');
+    function renderGrid() {
+      let items = PRODUCTS.filter(p => currentCat === 'all' ? true : p.category === currentCat);
+      switch (currentSort) {
+        case 'price-asc': items.sort((a, b) => basePrice(a) - basePrice(b)); break;
+        case 'price-desc': items.sort((a, b) => basePrice(b) - basePrice(a)); break;
+        case 'name-asc': items.sort((a, b) => a.name.localeCompare(b.name)); break;
+        default: items.sort((a, b) => b.popular - a.popular);
+      }
+      grid.innerHTML = items.map(p => cardHTML(p)).join('');
+      // attach events
+      items.forEach(p => {
+        const openBtn = document.querySelector(`[data-open="${p.id}"]`);
+        const quickAdd = document.querySelector(`[data-quick="${p.id}"]`);
+        openBtn?.addEventListener('click', () => openModal(p));
+        quickAdd?.addEventListener('click', () => { addToCart(p, 50, 1); }); // әдепкі 50 мл
+      });
+    }
+    function cardHTML(p) {
+      const catTxt = { men: 'Ерлерге', women: 'Әйелдерге', unisex: 'Unisex' }[p.category] || '';
+      return `
+  <div class="card">
+    <a class="thumb" data-open="${p.id}" role="button" aria-label="${p.name}">
+      <span class="badge">${catTxt}</span>
+      <img src="${p.image}" alt="${p.name}">
+    </a>
+    <div class="body">
+      <div class="title">${p.name}</div>
+      <div class="muted">${p.desc}</div>
+      <div class="row">
+        <div class="price">${fmt(basePrice(p))}</div>
+        <div class="row" style="gap:6px display:flex; flex-wrap:wrap;">
+          <button class="btn" data-quick="${p.id}">🛒</button>
+        </div>
+      </div>
+    </div>
+  </div>`;
+    }
+
+    /** ------------ Tabs & Sort -------------- **/
+    document.getElementById('tabs').addEventListener('click', (e) => {
+      const t = e.target.closest('.tab'); if (!t) return;
+      document.querySelectorAll('.tab').forEach(x => x.classList.remove('active'));
+      t.classList.add('active');
+      currentCat = t.dataset.cat;
+      renderGrid();
+    });
+    document.getElementById('sortSel').addEventListener('change', (e) => {
+      currentSort = e.target.value; renderGrid();
+    });
+
+    /** ------------ Modal -------------- **/
+    const modalWrap = document.getElementById('modalWrap');
+    const mTitle = document.getElementById('mTitle');
+    const mCat = document.getElementById('mCat');
+    const mDesc = document.getElementById('mDesc');
+    const mImg = document.getElementById('mImg');
+    const mSizes = document.getElementById('mSizes');
+    const mPrice = document.getElementById('mPrice');
+    const mAdd = document.getElementById('mAdd');
+    const mBuy = document.getElementById('mBuy');
+
+    function openModal(p) {
+      modalState.product = p;
+      modalState.size = Number(Object.keys(p.prices)[0]); // first available
+      mTitle.textContent = p.name;
+      mCat.textContent = { men: 'Ерлерге', women: 'Әйелдерге', unisex: 'Unisex' }[p.category] ?? '';
+      mDesc.textContent = p.desc;
+      mImg.src = p.image; mImg.alt = p.name;
+      renderSizes(p);
+      updateModalPrice();
+      modalWrap.style.display = 'flex';
+      modalWrap.setAttribute('aria-hidden', 'false');
+    }
+    function closeModal() {
+      modalWrap.style.display = 'none';
+      modalWrap.setAttribute('aria-hidden', 'true');
+    }
+    document.getElementById('modalClose').addEventListener('click', closeModal);
+    modalWrap.addEventListener('click', (e) => { if (e.target === modalWrap) closeModal(); });
+    document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeModal(); });
+
+    function renderSizes(p) {
+      mSizes.innerHTML = Object.entries(p.prices).map(([size, price]) => {
+        const id = `size_${p.id}_${size}`;
+        return `
+    <label class="radio" for="${id}">
+      <div style="display:flex;align-items:center;gap:10px;">
+        <input type="radio" id="${id}" name="size" value="${size}" ${Number(size) === modalState.size ? 'checked' : ''}>
+        <strong>${size} мл</strong>
+      </div>
+      <span>${fmt(price)}</span>
+    </label>`;
+      }).join('');
+      mSizes.querySelectorAll('input[name="size"]').forEach(inp => {
+        inp.addEventListener('change', () => {
+          modalState.size = Number(inp.value);
+          updateModalPrice();
+        });
+      });
+    }
+    function updateModalPrice() {
+      const p = modalState.product; if (!p) return;
+      const price = p.prices[modalState.size];
+      mPrice.textContent = fmt(price);
+    }
+    mAdd.addEventListener('click', () => {
+      const { product, size } = modalState;
+      addToCart(product, size, 1);
+      closeModal();
+    });
+    mBuy.addEventListener('click', () => {
+      const { product, size } = modalState;
+      addToCart(product, size, 1);
+      openDrawer();
+    });
+
+    /** ------------ Cart -------------- **/
+    const cartCount = document.getElementById('cartCount');
+    const cartList = document.getElementById('cartList');
+    const cartTotal = document.getElementById('cartTotal');
+    const drawer = document.getElementById('drawer');
+    document.getElementById('openCart').addEventListener('click', openDrawer);
+    document.getElementById('closeCart').addEventListener('click', closeDrawer);
+    document.getElementById('clearCart').addEventListener('click', () => { cart = {}; persistAndRender(); });
+    document.getElementById('checkout').addEventListener('click', () => {
+      alert('Демо: төлем жүйесін кейін қосамыз');
+    });
+
+    function openDrawer() { drawer.classList.add('open'); }
+    function closeDrawer() { drawer.classList.remove('open'); }
+
+    function addToCart(product, size, qty) {
+      const k = keyOf(product.id, size);
+      if (!cart[k]) cart[k] = { id: product.id, size, qty: 0 };
+      cart[k].qty += qty;
+      persistAndRender();
+    }
+    function updateQty(k, delta) {
+      if (!cart[k]) return;
+      cart[k].qty += delta;
+      if (cart[k].qty <= 0) delete cart[k];
+      persistAndRender();
+    }
+    function removeItem(k) { if (cart[k]) { delete cart[k]; persistAndRender(); } }
+
+    function persistAndRender() {
+      saveCart();
+      renderCart();
+      updateCount();
+    }
+
+    function renderCart() {
+      const entries = Object.entries(cart);
+      if (entries.length === 0) {
+        cartList.innerHTML = `<div class="muted">Корзина бос. Идеалды сәт — жаңа хош иіс қосу 😉</div>`;
+        cartTotal.textContent = fmt(0);
+        return;
+      }
+      let total = 0;
+      cartList.innerHTML = entries.map(([k, item]) => {
+        const p = PRODUCTS.find(x => x.id === item.id);
+        const price = p?.prices[item.size] ?? 0;
+        total += price * item.qty;
+        return `
+      <div class="cart-item">
+        <img src="${p.image}" alt="${p.name}">
+        <div>
+          <div style="font-weight:700">${p.name}</div>
+          <div class="muted">${item.size} мл • ${fmt(price)}</div>
+          <div class="qty" style="margin-top:6px">
+            <button class="icon-btn" data-dec="${k}">−</button>
+            <span>${item.qty}</span>
+            <button class="icon-btn" data-inc="${k}">＋</button>
+            <button class="icon-btn" style="margin-left:auto" data-del="${k}">Жою</button>
+          </div>
+        </div>
+        <div style="font-weight:700">${fmt(price * item.qty)}</div>
+      </div>
+    `;
+      }).join('');
+      cartTotal.textContent = fmt(total);
+      // events
+      cartList.querySelectorAll('[data-inc]').forEach(b => b.addEventListener('click', () => updateQty(b.dataset.inc, +1)));
+      cartList.querySelectorAll('[data-dec]').forEach(b => b.addEventListener('click', () => updateQty(b.dataset.dec, -1)));
+      cartList.querySelectorAll('[data-del]').forEach(b => b.addEventListener('click', () => removeItem(b.dataset.del)));
+    }
+
+    function updateCount() {
+      const count = Object.values(cart).reduce((s, i) => s + i.qty, 0);
+      cartCount.textContent = count;
+    }
+
+    /** ------------ Init -------------- **/
+    renderGrid();
+    renderCart();
+    updateCount();
+  </script>
+  <script src="https://unpkg.com/ionicons@4.5.10-0/dist/ionicons.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js" integrity="sha384-ndDqU0Gzau9qJ1lfW4pNLlhNTkCfHzAVBReH9diLvGRem5+R9g2FzA8ZGN954O5Q" crossorigin="anonymous"></script>
+</body>
+
+</html>

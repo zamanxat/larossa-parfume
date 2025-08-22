@@ -1,0 +1,140 @@
+@font-face {
+    font-family:"kzdecor";
+    src: url("kazak-fonts/kazak19.otf") format("truetype");
+    font-weight:  normal;
+    font-style: normal;
+}
+
+
+@font-face {
+    font-family:"kzklementina";
+    src: url("kazak-fonts/kazak19.otf") format("opentype");
+    font-weight:  normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family:"lora";
+    src: url("kazak-fonts/Lora.ttf") format("truetype");
+    font-weight:  normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family:"alice";
+    src: url("kazak-fonts/kazak12.ttf") format("truetype");
+    font-weight:  normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family:"kzromulc";
+    src: url("kazak-fonts/kazak6.otf") format("opentype");
+    font-weight:  normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family:"kzmoumenta";
+    src: url("kazak-fonts/kazak9.ttf") format("truetype");
+    font-weight:  normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family:"bello";
+    src: url("kazak-fonts/kazak7.ttf") format("truetype");
+    font-weight:  normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family:"ITC";
+    src: url("kazak-fonts/kazak8.otf") format("opentype");
+    font-weight:  normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family:"sanasoft";
+    src: url("kazak-fonts/kazak3.ttf") format("truetype");
+    font-weight:  normal;
+    font-style: normal;
+}
+
+
+.center {
+    text-align: center;
+}
+
+.p_center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+    align-self: center;
+}
+
+
+/* ШРИФТЫ */
+.kzromulc {
+    font-family: "kzromulc";
+}
+
+.kzdecor {
+    font-family: "kzdecor";
+}
+
+.lora {
+    font-family: "lora";
+}
+
+.lorai {
+    font-family: "Lora-italic";
+}
+
+.kzmoumenta {
+    font-family: "kzmoumenta";
+}
+
+.alice {
+    font-family: "alice";
+}
+
+.bello {
+    font-family: "bello";
+}
+
+.ITC {
+    font-family: "ITC";
+}
+
+.kzklementina {
+    font-family: "kzklementina";
+}
+
+.sanasoft {
+    font-family: "sanasoft";
+}
+
+
+/* ЦВЕТЫ */
+
+.jasyl {
+    color: #017701;
+}
+
+.jasyl2 {
+    color: #025817;
+}
+
+.sary {
+    color: #FFB200;
+}
+
+
+
+.scroll-item p {
+    font-family: "bello";
+}
+

@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="kz">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="style.css">
+  <link rel="shortcut icon" href="images/logo2.jpg" type="image/x-icon">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-LN+7fdVzj6u52u30Kp6M/trliBMCMKTyK833zpbD+pXdCLuTusPj697FH4R/5mcr" crossorigin="anonymous">
+  <title>LA-ROSSA - парфюмерия дүкені</title>
+  <meta name="description" content="">
+
+
+</head>
+
+<style>
+  body {
+    font-family: 'Arial', sans-serif;
+    background: #fffffff2;
+    margin: 0;
+    padding: 10px;
+  }
+
+  * {
+    box-sizing: border-box
+  }
+
+
+  a {
+    color: inherit
+  }
+
+
+
+  :root {
+    --bg: #0f1115;
+    --card: #151923;
+    --muted: #8b93a7;
+    --text: #e8ecf3;
+    --accent: #5b8cff;
+    --accent-2: #35d0a3;
+    --danger: #ff6b6b;
+    --shadow: 0 10px 30px rgba(0, 0, 0, .35);
+    --radius: 14px;
+  }
+
+  /* Header */
+  .topbar {
+    position: sticky;
+    top: 0;
+    z-index: 30;
+    backdrop-filter: blur(10px);
+    background: rgba(15, 17, 21, .85);
+    border-bottom: 1px solid rgba(255, 255, 255, .06);
+  }
+
+  .wrap {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 14px 16px;
+    display: flex;
+    gap: 14px;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .brand {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-weight: 700;
+    letter-spacing: .5px
+  }
+
+  .brand .dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--accent), var(--accent-2));
+    box-shadow: 0 0 12px var(--accent)
+  }
+
+  .filters {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex-wrap: wrap
+  }
+
+  .tabs {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap
+  }
+
+  .tab {
+    color: white;
+    padding: 8px 12px;
+    border: 1px solid rgba(255, 255, 255, .1);
+    border-radius: 10px;
+    cursor: pointer;
+    background: #111521;
+    transition: .2s
+  }
+
+  .tab.active {
+    background: linear-gradient(135deg, rgba(91, 140, 255, .18), rgba(53, 208, 163, .18));
+    border-color: rgba(255, 255, 255, .2)
+  }
+
+  .sort {
+    display: flex;
+    align-items: center;
+    gap: 8px
+  }
+
+  select {
+    background: #111521;
+    border: 1px solid rgba(255, 255, 255, .12);
+    color: var(--text);
+    padding: 8px 12px;
+    border-radius: 10px;
+  }
+</style>
+
+
+
+<body>
+  <header>
+    <!-- Topbar -->
+    <div class="topbar" style="margin: -10px;">
+      <div class="wrap">
+        <div class="brand"><span class="dot"></span> <span><a href="#">
+              <img src="images/logo2.jpg" alt="logo" style="width: 70px; border-radius: 10px;">
+            </a></span></div>
+        <!-- <div class="filters">
+          <div class="tabs" id="tabs">
+            <button class="tab active"
+              style="width: 80px; height: 33px; font-size: 13.5px; display: flex; align-items: center; justify-content: center;">Барлығы</button>
+            <button class="tab"
+              style="width: 75px; height: 33px; font-size: 13.5px; display: flex; align-items: center; justify-content: center;">Ерлерге</button>
+            <button class="tab"
+              style="width: 90px; height: 33px; font-size: 13.5px; display: flex; align-items: center; justify-content: center;">Әйелдерге</button>
+            <button class="tab"
+              style="width: 66px; height: 33px; font-size: 13.5px; display: flex; align-items: center; justify-content: center;">Unisex</button>
+          </div>
+          <div class="sort">
+            <label for="sortSel" class="sr"></label>
+                    <select id="sortSel">
+                        <option value="popular">Сұраныс (әдепкі)</option>
+                        <option value="price-asc">Баға жоғарылау ↑</option>
+                        <option value="price-desc">Баға төмендеу ↓</option>
+                        <option value="name-asc">Атауы А–Я</option>
+                    </select>
+          </div> -->
+      </div>
+    </div>
+    </div>
+  </header>
+
+
+  <section>
+
+  </section>
+
+
+  <footer>
+
+    <div class="footer-tab"
+      style="width: 100%; position: fixed; bottom: 0px; height: 70px; background-color: #000000e7; display: flex; justify-content: space-around; align-items: center; margin-left: -10px;">
+      <div class="sect"
+        style="display: flex; justify-content: center; align-items: center; flex-direction: column; margin-top: 10px;">
+        <ion-icon name="home"
+          style="width: 30px; height: 30px; color: rgba(91, 140, 255, 0.715); margin: 0px;"></ion-icon>
+        <p style="font-size: 0.7em; margin-top: 0px; margin-bottom: 10px; color: rgba(91, 140, 255, 0.715);"
+          class="lora">Главная</p>
+      </div>
+      <a href="catalog.html" style="text-decoration: none;">
+        <div class="sect"
+          style="display: flex; justify-content: center; align-items: center; flex-direction: column; margin-top: 10px;">
+          <ion-icon name="today" style="width: 30px; height: 30px;  color: white; margin: 0px;"></ion-icon>
+          <p style="font-size: 0.7em; margin-top: 0px; margin-bottom: 10px; color: white;" class="lora">Каталог</p>
+        </div>
+      </a>
+      <a style="text-decoration: none;" data-bs-toggle="modal" href="#exampleModalToggle" role="button">
+        <div class="sect"
+          style="display: flex; justify-content: center; align-items: center; flex-direction: column; margin-top: 10px;">
+          <ion-icon name="gift" style="width: 30px; height: 30px; color: #ffffff; margin: 0px;"></ion-icon>
+          <p style="font-size: 0.7em; margin-top: 0px; margin-bottom: 0px; color: white;" class="lora">
+            Подарочный<br style="height: 1px;">сертификат</p>
+        </div>
+      </a>
+      <a href="tehpod.html" style="text-decoration: none;">
+        <div class="sect"
+          style="display: flex; justify-content: center; align-items: center; flex-direction: column; margin-top: 10px;">
+          <ion-icon name="help-circle" style="width: 30px; height: 30px;  margin: 0px; color: white;"></ion-icon>
+          <p style="font-size: 0.7em; margin-top: 0px; margin-bottom: 10px; color: white;" class="lora">
+            О нас</p>
+        </div>
+      </a>
+    </div>
+  </footer>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <div class="modal fade" id="exampleModalToggle" aria-hidden="true" aria-labelledby="exampleModalToggleLabel"
+    tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalToggleLabel">Certificate💌</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <b style="font-size: 1.4em;">🎁 Подарочный сертификат LAROSSA</b><br><br>
+          Жақындарыңызды ерекше қуантқыңыз келе ме? <br><br><u>LAROSSA</u>-ның подарочный сертификаты — мінсіз
+          таңдау! Әр адам өз талғамына сай өнімді өзі таңдап алады. Сіз сыйлық іздеп әуре болмайсыз, ал ол
+          болса шынымен қалағанын алады. <br><br>
+          Сертификат түрлі номиналдарда қолжетімді. Туған күнге, мерекеге немесе жай ғана қуаныш сыйлауға
+          тамаша мүмкіндік. <u>LAROSSA</u> сыйлығы — әрдайым есте қалады.
+        </div>
+        <div class="modal-footer">
+          <button class="btn btn-primary" data-bs-target="#exampleModalToggle2" data-bs-toggle="modal"
+            data-bs-dismiss="modal">Certificate💌</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="modal fade" id="exampleModalToggle2" aria-hidden="true" aria-labelledby="exampleModalToggleLabel2"
+    tabindex="-1">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalToggleLabel2">Certificate💌</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <b style="font-size: 1.4em;">🎁 Подарочный сертификат</b> <br><br>
+          Қазір қолжетімсіз. Жақында сіз үшін қосамыз ✨
+        </div>
+        <div class="modal-footer">
+          <button class="btn btn-primary" data-bs-target="#exampleModalToggle" data-bs-toggle="modal"
+            data-bs-dismiss="modal">Артқа қайту↩️</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-ndDqU0Gzau9qJ1lfW4pNLlhNTkCfHzAVBReH9diLvGRem5+R9g2FzA8ZGN954O5Q"
+    crossorigin="anonymous"></script>
+  <script src="https://unpkg.com/ionicons@4.5.10-0/dist/ionicons.js"></script>
+
+</body>
+
+</html>
